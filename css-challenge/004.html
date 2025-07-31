@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <style>
+            @import url(https://fonts.googleapis.com/css?family=Open+Sans:700,300);
+
+            @keyframes one {
+                0% {
+                    transform: scale(0);
+                    box-shadow: 2px 2px 3px 2px rgba(0, 0, 0, 0.2);
+                }
+
+                70% {
+                    transform: scale(0);
+                    box-shadow: 2px 2px 3px 2px rgba(0, 0, 0, 0.2);
+                }
+
+                100% {
+                    transform: scale(1);
+                    box-shadow: 10px 10px 15px 0 rgba(0, 0, 0, 0.3);
+                }
+            }
+
+            @keyframes two {
+                0% {
+                    transform: scale(0);
+                    box-shadow: 2px 2px 3px 2px rgba(0, 0, 0, 0.2);
+                }
+
+                50% {
+                    transform: scale(0);
+                    box-shadow: 2px 2px 3px 2px rgba(0, 0, 0, 0.2);
+                }
+
+                100% {
+                    transform: scale(1);
+                    box-shadow: 10px 10px 15px 0 rgba(0, 0, 0, 0.3);
+                }
+            }
+
+            @keyframes three {
+                0% {
+                    transform: scale(0);
+                    box-shadow: 2px 2px 3px 2px rgba(0, 0, 0, 0.2);
+                }
+
+                100% {
+                    transform: scale(1);
+                    box-shadow: 10px 10px 15px 0 rgba(0, 0, 0, 0.3);
+                }
+            }
+            .frame {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                width: 400px;
+                height: 400px;
+                margin-top: -200px;
+                margin-left: -200px;
+                border-radius: 2px;
+                box-shadow: 4px 8px 16px 0 rgba(0, 0, 0, 0.1);
+                overflow: hidden;
+                background: #e56262;
+                color: #333;
+                font-family: "Open Sans", Helvetica, sans-serif;
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+            }
+
+            .center {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+
+            .one {
+                position: absolute;
+                width: 30px;
+                height: 30px;
+                bottom: -10px;
+                left: -14px;
+                background: white;
+                border-radius: 50%;
+                z-index: 100;
+                animation: one 2s cubic-bezier(0.21, 0.98, 0.6, 0.99) infinite
+                    alternate;
+            }
+
+            .two {
+                position: absolute;
+                width: 60px;
+                height: 60px;
+                bottom: -25px;
+                left: -28px;
+                background: white;
+                border-radius: 50%;
+                z-index: 50;
+                animation: two 2s cubic-bezier(0.21, 0.98, 0.6, 0.99) infinite
+                    alternate;
+            }
+
+            .three {
+                position: absolute;
+                width: 90px;
+                height: 90px;
+                bottom: -40px;
+                left: -44px;
+                background: white;
+                border-radius: 50%;
+                z-index: 10;
+                animation: three 2s cubic-bezier(0.21, 0.98, 0.6, 0.99) infinite
+                    alternate;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="frame">
+            <div class="center">
+                <div class="one"></div>
+                <div class="two"></div>
+                <div class="three"></div>
+            </div>
+        </div>
+    </body>
+</html>
