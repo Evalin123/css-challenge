@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <style>
+            @import url(https://fonts.googleapis.com/css?family=Open+Sans:700,300);
+            .frame {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                width: 400px;
+                height: 400px;
+                margin-top: -200px;
+                margin-left: -200px;
+                border-radius: 2px;
+                box-shadow: 4px 8px 16px 0 rgba(0, 0, 0, 0.1);
+                overflow: hidden;
+                background: #42a7a1;
+                color: #333;
+                font-family: "Open Sans", Helvetica, sans-serif;
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+                box-sizing: border-box;
+            }
+            *,
+            *::before,
+            *::after {
+                box-sizing: inherit;
+            }
+
+            .card {
+                height: 220px;
+                width: 280px;
+                overflow: hidden;
+                position: absolute;
+                top: 90px;
+                left: 60px;
+                border-radius: 5px;
+                box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.2);
+            }
+
+            .header {
+                background: #f1ba64;
+                width: 100%;
+                height: 60px;
+                padding: 12px 15px;
+                color: #fff;
+            }
+
+            .content {
+                background: white;
+                width: 100%;
+                height: 160px;
+            }
+
+            .left {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .right {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .big {
+                font-weight: 600;
+                font-size: 14px;
+                text-transform: uppercase;
+            }
+
+            .small {
+                font-weight: 400;
+                font-size: 11px;
+            }
+
+            .content {
+                position: relative;
+                padding: 10px 10px;
+                display: flex;
+                flex-direction: column;
+            }
+
+            .legend {
+                display: flex;
+                justify-content: flex-end;
+                align-items: center;
+                padding: 10px 0 14px 0;
+
+                span {
+                    font-size: 9px;
+                    position: relative;
+                    padding: 0 10px 0 25px;
+                }
+
+                span:before {
+                    display: inline-block;
+                    position: absolute;
+                    top: 4px;
+                    left: 8px;
+                    content: "";
+                    width: 11px;
+                    height: 3px;
+                    border-radius: 3px;
+                }
+
+                .red:before {
+                    background: #fa7373;
+                }
+
+                .blue:before {
+                    background: #7ba2ff;
+                }
+            }
+
+            .chart {
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+
+                .line {
+                    flex: 1;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+                    position: relative;
+
+                    .line-1 {
+                        background: gray;
+                        width: 100%;
+                        height: 1px;
+                        background: #f2f2f2;
+                    }
+                    .line-2 {
+                        @extend .line-1;
+                    }
+                    .line-3 {
+                        @extend .line-1;
+                    }
+
+                    .red-data {
+                        position: absolute;
+
+                        polyline {
+                            fill: none;
+                            stroke: #fa7373;
+                            stroke-width: 2;
+                        }
+
+                        .tooltip {
+                            transform: translateY(-40px);
+                            position: absolute;
+                            top: 6px;
+                            left: -12px;
+                            background: #fa7373;
+                            border-radius: 3px;
+                            visibility: hidden;
+                            opacity: 0;
+                            font-weight: 600;
+                            font-size: 11px;
+                            padding: 8px 6px;
+                            color: #fff;
+                            transition: all 0.5s;
+                        }
+
+                        .points {
+                            [class^="point-"] {
+                                position: absolute;
+                                width: 6px;
+                                height: 6px;
+                                background: #fa7373;
+                                border-radius: 50%;
+                                z-index: 10;
+                                cursor: pointer;
+
+                                &:hover .tooltip {
+                                    visibility: visible;
+                                    opacity: 1;
+                                }
+                            }
+
+                            .point-1 {
+                                bottom: 102px;
+                                left: 4px;
+                            }
+
+                            .point-2 {
+                                bottom: 138px;
+                                left: 47px;
+                            }
+
+                            .point-3 {
+                                bottom: 128px;
+                                left: 88px;
+                            }
+
+                            .point-4 {
+                                bottom: 138px;
+                                left: 127px;
+                            }
+
+                            .point-5 {
+                                bottom: 112px;
+                                left: 169px;
+                            }
+
+                            .point-6 {
+                                bottom: 102px;
+                                left: 208px;
+                            }
+
+                            .point-7 {
+                                bottom: 132px;
+                                left: 249px;
+                            }
+                        }
+                    }
+
+                    .blue-data {
+                        position: absolute;
+
+                        polyline {
+                            fill: none;
+                            stroke: #7ba2ff;
+                            stroke-width: 2;
+                        }
+
+                        .tooltip {
+                            transform: translateY(-40px);
+                            position: absolute;
+                            top: 6px;
+                            left: -8px;
+                            background: #7ba2ff;
+                            border-radius: 3px;
+                            visibility: hidden;
+                            opacity: 0;
+                            font-weight: 600;
+                            font-size: 11px;
+                            padding: 8px 6px;
+                            color: #fff;
+                            transition: all 0.5s;
+                        }
+
+                        .points {
+                            [class^="point-"] {
+                                position: absolute;
+                                width: 6px;
+                                height: 6px;
+                                background: #7ba2ff;
+                                border-radius: 50%;
+                                z-index: 10;
+                                cursor: pointer;
+
+                                &:hover .tooltip {
+                                    visibility: visible;
+                                    opacity: 1;
+                                }
+                            }
+
+                            .point-1 {
+                                bottom: 88px;
+                                left: 4px;
+                            }
+
+                            .point-2 {
+                                bottom: 100px;
+                                left: 47px;
+                            }
+
+                            .point-3 {
+                                bottom: 86px;
+                                left: 88px;
+                            }
+
+                            .point-4 {
+                                bottom: 95px;
+                                left: 127px;
+                            }
+
+                            .point-5 {
+                                bottom: 89px;
+                                left: 169px;
+                            }
+
+                            .point-6 {
+                                bottom: 76px;
+                                left: 208px;
+                            }
+
+                            .point-7 {
+                                bottom: 86px;
+                                left: 249px;
+                            }
+                        }
+                    }
+                }
+
+                .x-axis {
+                    display: flex;
+                    justify-content: space-between;
+                    font-size: 9px;
+                    color: #949494;
+                    text-transform: uppercase;
+                    line-height: 28px;
+                }
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="frame">
+            <div class="card">
+                <div class="header">
+                    <div class="left">
+                        <span class="title big">Weekly report</span>
+                        <span class="date small">Revenue</span>
+                    </div>
+                    <div class="right">
+                        <span class="type small">01. Feb - 07. Feb</span>
+                        <span class="cost big">$ 3621.79</span>
+                    </div>
+                </div>
+                <div class="content">
+                    <div class="legend">
+                        <span class="red">Views</span>
+                        <span class="blue">Purchases</span>
+                    </div>
+                    <div class="chart">
+                        <div class="line">
+                            <div class="line-1"></div>
+                            <div class="line-2"></div>
+                            <div class="line-3"></div>
+                            <div class="red-data">
+                                <svg>
+                                    <polyline
+                                        points="9,46 50,12 90,23 130,11 171,38 211,48 251,19"
+                                    />
+                                    <div class="points">
+                                        <div class="point-1">
+                                            <div class="tooltip">458</div>
+                                        </div>
+                                        <div class="point-2">
+                                            <div class="tooltip">812</div>
+                                        </div>
+                                        <div class="point-3">
+                                            <div class="tooltip">746</div>
+                                        </div>
+                                        <div class="point-4">
+                                            <div class="tooltip">877</div>
+                                        </div>
+                                        <div class="point-5">
+                                            <div class="tooltip">517</div>
+                                        </div>
+                                        <div class="point-6">
+                                            <div class="tooltip">460</div>
+                                        </div>
+                                        <div class="point-7">
+                                            <div class="tooltip">864</div>
+                                        </div>
+                                    </div>
+                                </svg>
+                            </div>
+                            <div class="blue-data">
+                                <svg>
+                                    <polyline
+                                        points="9,61 50,50 90,65 130,55 171,61 211,74 251,64"
+                                    />
+                                </svg>
+                                <div class="points">
+                                    <div class="point-1">
+                                        <div class="tooltip">26</div>
+                                    </div>
+                                    <div class="point-2">
+                                        <div class="tooltip">41</div>
+                                    </div>
+                                    <div class="point-3">
+                                        <div class="tooltip">22</div>
+                                    </div>
+                                    <div class="point-4">
+                                        <div class="tooltip">36</div>
+                                    </div>
+                                    <div class="point-5">
+                                        <div class="tooltip">25</div>
+                                    </div>
+                                    <div class="point-6">
+                                        <div class="tooltip">13</div>
+                                    </div>
+                                    <div class="point-7">
+                                        <div class="tooltip">23</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="x-axis">
+                            <span>Mon</span>
+                            <span>Tue</span>
+                            <span>Wed</span>
+                            <span>Thu</span>
+                            <span>Fri</span>
+                            <span>Sat</span>
+                            <span>Sun</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
