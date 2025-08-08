@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <style>
+            @import url(https://fonts.googleapis.com/css?family=Open+Sans:700,300);
+
+            .frame {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                width: 400px;
+                height: 400px;
+                margin-top: -200px;
+                margin-left: -200px;
+                border-radius: 2px;
+                box-shadow: 4px 8px 16px 0 rgba(0, 0, 0, 0.1);
+                overflow: hidden;
+                background: linear-gradient(
+                    48deg,
+                    rgba(238, 190, 108, 1) 0%,
+                    rgba(202, 124, 78, 1) 100%
+                );
+                color: #786450;
+                font-family: "Open Sans", Helvetica, sans-serif;
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+                box-sizing: border-box;
+            }
+            *,
+            *::before,
+            *::after {
+                box-sizing: inherit;
+            }
+
+            .card {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                height: 299px;
+                width: 320px;
+                background: #fff;
+                transform: translate(-50%, -50%);
+                border-radius: 3px;
+                overflow: hidden;
+                box-shadow: 10px 10px 15px 0 rgba(0, 0, 0, 0.3);
+                display: flex;
+            }
+
+            .profile {
+                width: 200px;
+                height: 320px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                padding: 38px 0;
+            }
+
+            .avatar {
+                border-radius: 50%;
+                width: 70px;
+                height: 70px;
+                cursor: pointer;
+                position: relative;
+
+                img {
+                    border-radius: 50%;
+                }
+
+                .circle-1 {
+                    position: absolute;
+                    border-radius: 50%;
+                    width: 76px;
+                    height: 76px;
+                    top: -3px;
+                    left: -3px;
+                    border: 1px solid #786450;
+                    border-left-color: transparent;
+                    transition: transform 1s ease-in-out;
+                }
+                .circle-2 {
+                    position: absolute;
+                    border-radius: 50%;
+                    width: 82px;
+                    height: 82px;
+                    top: -6px;
+                    left: -6px;
+                    border: 1px solid #786450;
+                    border-right-color: transparent;
+                    transition: transform 1s ease-in-out;
+                }
+
+                &:hover .circle-1 {
+                    transform: rotate(360deg);
+                }
+
+                &:hover .circle-2 {
+                    transform: rotate(-360deg);
+                }
+            }
+
+            .name {
+                font-size: 15px;
+                font-weight: 600;
+                margin: 20px 0 0 0;
+            }
+
+            .job {
+                font-size: 11px;
+                line-height: 15px;
+                margin: 0;
+            }
+
+            .actions {
+                display: flex;
+                flex-direction: column;
+                margin-top: 33px;
+
+                button {
+                    width: 120px;
+                    height: 30px;
+                    border-radius: 20px;
+                    font-size: 12px;
+                    font-weight: 600;
+                    border: 1px solid #786450;
+                    background-color: #fff;
+                    cursor: pointer;
+                    color: #786450;
+                    margin-bottom: 10px;
+
+                    &:hover {
+                        background-color: #786450;
+                        color: white;
+                    }
+                }
+            }
+
+            .options {
+                width: 120px;
+                height: 299px;
+                display: flex;
+                flex-direction: column;
+                .posts {
+                    flex: 1;
+                    background: #f5e8df;
+                    border-bottom: 1px solid #fff;
+                    display: flex;
+                    cursor: pointer;
+                    div {
+                        margin: auto;
+                    }
+                }
+
+                .posts:hover {
+                    background: #e1cfc2;
+                }
+
+                .likes {
+                    flex: 1;
+                    background: #f5e8df;
+                    border-bottom: 1px solid #fff;
+                    display: flex;
+                    cursor: pointer;
+                    div {
+                        margin: auto;
+                    }
+                }
+                .likes:hover {
+                    background: #e1cfc2;
+                }
+
+                .follower {
+                    flex: 1;
+                    background: #f5e8df;
+                    display: flex;
+                    cursor: pointer;
+                    div {
+                        margin: auto;
+                    }
+                }
+                .follower:hover {
+                    background: #e1cfc2;
+                }
+
+                .number {
+                    margin: 0px;
+                    font-size: 18px;
+                    font-weight: 600;
+                }
+
+                .type {
+                    margin: 0px;
+                    font-size: 11px;
+                    text-align: center;
+                }
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="frame">
+            <div class="card">
+                <div class="profile">
+                    <div class="avatar">
+                        <img
+                            src="https://100dayscss.com/codepen/jessica-potter.jpg"
+                            width="70"
+                            height="70"
+                            alt="Jessica Potter"
+                        />
+                        <div class="circle-1"></div>
+                        <div class="circle-2"></div>
+                    </div>
+                    <p class="name">Jessica Potter</p>
+                    <p class="job">Visual Artist</p>
+                    <div class="actions">
+                        <button>Follow</button>
+                        <button>Message</button>
+                    </div>
+                </div>
+                <div class="options">
+                    <div class="posts">
+                        <div>
+                            <p class="number">523</p>
+                            <p class="type">Posts</p>
+                        </div>
+                    </div>
+                    <div class="likes">
+                        <div>
+                            <p class="number">3324</p>
+                            <p class="type">Likes</p>
+                        </div>
+                    </div>
+                    <div class="follower">
+                        <div>
+                            <p class="number">7639</p>
+                            <p class="type">Follower</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
