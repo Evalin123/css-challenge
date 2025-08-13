@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link
+            rel="stylesheet"
+            href="https://pro.fontawesome.com/releases/v5.10.1/css/all.css"
+        />
+        <style>
+            @import url(https://fonts.googleapis.com/css?family=Open+Sans:700,300);
+
+            .frame {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                width: 400px;
+                height: 400px;
+                margin-top: -200px;
+                margin-left: -200px;
+                border-radius: 2px;
+                box-shadow: 4px 8px 16px 0 rgba(0, 0, 0, 0.1);
+                overflow: hidden;
+                background: #264057;
+                color: #333;
+                font-family: "Open Sans", Helvetica, sans-serif;
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+                box-sizing: border-box;
+            }
+            *,
+            *::before,
+            *::after {
+                box-sizing: inherit;
+            }
+
+            .panel {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background: #fff;
+                height: 300px;
+                width: 300px;
+                border-radius: 3px;
+                overflow: hidden;
+                box-shadow: 10px 10px 15px 0 rgba(0, 0, 0, 0.3);
+                z-index: 10;
+                transition: transform 0.3s linear;
+            }
+
+            .nav-bar {
+                height: 60px;
+                width: 100%;
+                background: #5f98cd;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 0 20px;
+
+                .menu-icon {
+                    position: relative;
+                    cursor: pointer;
+                    width: 29px;
+                    height: 15px;
+                    z-index: 20;
+
+                    &:hover {
+                        .bar-top,
+                        .bar-bottom,
+                        .dot {
+                            background: #fff;
+                        }
+                    }
+
+                    .bar-top {
+                        position: absolute;
+                        width: 20px;
+                        height: 3px;
+                        background: #b2daff;
+                        border-radius: 3px;
+                        top: 1px;
+                    }
+
+                    .bar-bottom {
+                        position: absolute;
+                        width: 29px;
+                        height: 3px;
+                        background: #b2daff;
+                        border-radius: 3px;
+                        top: 13px;
+                    }
+
+                    .dot {
+                        position: absolute;
+                        height: 7px;
+                        width: 7px;
+                        background: #b2daff;
+                        border-radius: 50%;
+                        top: -1px;
+                        left: 22px;
+                    }
+                }
+
+                .title {
+                    color: #fff;
+                    font-weight: 600;
+                    font-size: 15px;
+                    line-height: 60px;
+                    z-index: 5;
+                }
+
+                .search {
+                    position: absolute;
+                    width: 230px;
+                    height: 34px;
+                    border-radius: 17px;
+                    border: none;
+                    background: #fff;
+                    font-size: 13px;
+                    color: #666;
+                    padding: 0 17px;
+                    left: 18px;
+                    opacity: 0;
+                    transform: translateX(10px);
+                    transition: opacity 0.3s, transform 0.3s linear;
+                    z-index: 1;
+
+                    &:focus {
+                        outline: none;
+                    }
+                }
+
+                .show {
+                    opacity: 1;
+                    transform: translate(0);
+                    z-index: 100;
+                }
+
+                .search-icon {
+                    z-index: 2;
+                    font-size: 21px;
+                    color: #b2daff;
+                    transition: all 0.3s ease-in-out;
+                    cursor: pointer;
+
+                    &:hover {
+                        color: #fff;
+                    }
+                }
+            }
+
+            .notifications {
+                height: 240px;
+                width: 100%;
+                position: relative;
+
+                .time-line {
+                    position: absolute;
+                    width: 3px;
+                    height: 100%;
+                    background: #ebebeb;
+                    left: 27px;
+                    bottom: 24px;
+                }
+
+                .notify {
+                    position: relative;
+                    margin-top: 24px;
+                    width: 240px;
+
+                    .dot {
+                        position: absolute;
+                        height: 11px;
+                        width: 11px;
+                        background: #fff;
+                        border: 2px solid #5f98cd;
+                        border-radius: 50%;
+                        box-shadow: 0 0 0 3px #fff;
+                        left: 24px;
+                        cursor: pointer;
+                    }
+
+                    .time {
+                        position: relative;
+                        display: block;
+                        font-size: 11px;
+                        line-height: 11px;
+                        margin-bottom: 2px;
+                        left: 40px;
+                        bottom: 1px;
+                        cursor: pointer;
+                    }
+
+                    .content {
+                        position: relative;
+                        left: 40px;
+                        font-size: 15px;
+                        line-height: 20px;
+                        margin: 0;
+                        text-wrap: wrap;
+                        cursor: pointer;
+
+                        b {
+                            font-weight: 600;
+                        }
+                    }
+
+                    &:hover {
+                        color: #5f98cd;
+                    }
+                }
+            }
+
+            .menu {
+                position: absolute;
+                top: 65px;
+                left: 50px;
+                width: 170px;
+                height: 270px;
+                background: #43627d;
+                border-radius: 3px;
+                z-index: 1;
+                transform: translateX(20px);
+                transition: transform 0.3s ease-in-out;
+
+                ul {
+                    list-style-type: none;
+                    padding: 0 0;
+
+                    li {
+                        padding: 17px 20px;
+                        cursor: pointer;
+                        color: #93b2cd;
+                        list-style: none;
+                        font-size: 14px;
+                        line-height: 14px;
+                        transition: all 0.3s ease-in-out;
+
+                        span {
+                            margin-right: 8px;
+                        }
+
+                        &:hover {
+                            color: #fff;
+                            background: #385269;
+                        }
+                    }
+                }
+            }
+
+            .show-menu {
+                transform: translate(0);
+                z-index: 5;
+            }
+
+            .show-menu-panel {
+                transform: translate(-2%, -50%);
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="frame">
+            <div class="panel">
+                <div class="nav-bar">
+                    <div class="menu-icon">
+                        <div class="bar-top"></div>
+                        <div class="bar-bottom"></div>
+                        <div class="dot"></div>
+                    </div>
+                    <div class="title">Notifications</div>
+                    <input
+                        type="text"
+                        class="search"
+                        placeholder="Search ..."
+                    />
+                    <div class="fa fa-search search-icon"></div>
+                </div>
+                <div class="notifications">
+                    <div class="time-line"></div>
+                    <div class="notify">
+                        <div class="dot"></div>
+                        <span class="time">9:24 AM</span>
+                        <p class="content">
+                            <b>John Walker</b> posted a photo on your wall.
+                        </p>
+                    </div>
+                    <div class="notify">
+                        <div class="dot"></div>
+                        <span class="time">8:19 AM</span>
+                        <p class="content">
+                            <b>Alice Parker</b> commented your last post.
+                        </p>
+                    </div>
+                    <div class="notify">
+                        <div class="dot"></div>
+                        <span class="time">Yesterday</span>
+                        <p class="content">
+                            <b>Luke Wayne</b> added you as friend.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="menu">
+                <ul>
+                    <li><span class="fa fa-tachometer"></span>Dashboard</li>
+                    <li><span class="fa fa-user"></span>Profile</li>
+                    <li><span class="fa fa-bell"></span>Notifications</li>
+                    <li><span class="fa fa-comments"></span>Messages</li>
+                    <li><span class="fa fa-cog"></span>Settings</li>
+                </ul>
+            </div>
+        </div>
+        <script>
+            let search = document.getElementsByClassName("search-icon")[0];
+            let input = document.getElementsByClassName("search")[0];
+            let menu = document.getElementsByClassName("menu-icon")[0];
+            let panel = document.getElementsByClassName("panel")[0];
+            let list = document.getElementsByClassName("menu")[0];
+
+            search.addEventListener("click", (evt) => {
+                input.classList.toggle("show");
+            });
+
+            menu.addEventListener("click", (evt) => {
+                panel.classList.toggle("show-menu-panel");
+                list.classList.toggle("show-menu");
+            });
+        </script>
+    </body>
+</html>
